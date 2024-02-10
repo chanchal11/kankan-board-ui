@@ -22,18 +22,3 @@ const KanbanCard = ({ id, title, tag, userId, status, priority, optionOnClick = 
 };
 
 export default KanbanCard;
-
-
-/*
-
- <div className="kanban-card" data-status={status} data-priority={priority}>
-      <h3 className="kanban-card-title">{title}</h3>
-      {tag.map((t, index) => (
-        <span key={index} className="kanban-card-tag">{t}</span>
-      ))}
-      <div className="kanban-card-footer">
-        <span className="kanban-card-user">User ID: {userId}</span>
-        <span className="kanban-card-id">Card ID: {id}</span>
-      </div>
-    </div>
-*/

@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
-import KanbanCard from './components/card';
 import Board from './components/board';
+import Navbar from './components/navbar';
 
 const App = () => {
   const [tickets, setTickets] = useState([]);
@@ -34,44 +33,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-
-        <div className="options">
-          <label>
-            Group By:
-            <select value={groupingOption} onChange={(e) => handleGroupingOptionChange(e.target.value)}>
-              <option value="status">Status</option>
-              <option value="userId">User</option>
-              <option value="priority">Priority</option>
-            </select>
-          </label>
-          <label>
-            Sort By:
-            <select value={sortingOption} onChange={(e) => handleSortingOptionChange(e.target.value)}>
-              <option value="priority">Priority</option>
-              <option value="title">Title</option>
-            </select>
-          </label>
-        </div>
-        <div className="kanban-board">
+    <div>
+      <Navbar groupingOption={groupingOption} sortingOption={sortingOption} handleGroupingOptionChange={handleGroupingOptionChange} handleSortingOptionChange={handleSortingOptionChange} />
+      <div className="kanban-board">
           <Board groupBy={groupingOption} sortBy={sortingOption} tickets={tickets} users={users}  />
         </div>
-      </header>
     </div>
   );
 };
 
 export default App;
-
-// {tickets?.length > 0 && tickets.map((ticket) => (
-//   <KanbanCard
-//     key={ticket.id}
-//     id={ticket.id}
-//     title={ticket.title}
-//     tag={ticket.tag}
-//     userId={ticket.userId}
-//     status={ticket.status}
-//     priority={ticket.priority}
-// />            
-// ))}

@@ -1,0 +1,77 @@
+.navbar {
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.display-btn {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 20px;
+    max-width: max-content;
+    font-size: 15px;
+}
+
+.options {
+    position: absolute;
+    left: 20px;
+    top: 45px;
+    display: flex;
+    z-index: 99;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    gap: 5px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.option-title {
+    color: gray;
+}
+
+.hide {
+    display: none;
+}
+
+.arrow-down {
+    justify-self: flex-end;
+}
+
+.navbar select {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.navbar .options select {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.navbar .option select {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
