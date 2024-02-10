@@ -1,31 +1,52 @@
 import { useEffect, useState } from "react";
 import KanbanCard from "../card";
 import './styles.css';
-export default function Board({  groupBy = "status", sortBy = "priority" , tickets, users }) {
+import Addicon from '../../images/add.png';
+import OptionIcon from '../../images/option.png';
+
+export default function Board({ groupBy = "status", sortBy = "priority", tickets, users }) {
   const [groupedTickets, setGroupedTickets] = useState({});
   const [allGroupedTickets, setAllGroupedTickets] = useState({});
+  const [_users, setUsers] = useState({});
 
   useEffect(() => {
-      console.log({allGroupedTickets});
-  }, [ allGroupedTickets ])
+    const newUsers = {};
+    users.forEach(user => {
+      newUsers[user.id] = user;
+    });
+    setUsers(newUsers);
+  }, [users]);
 
   useEffect(() => {
-    const _groupedTickets = {...groupedTickets};
-    const priorities = [0,1,2,3,4];
+    console.log({ allGroupedTickets });
+  }, [allGroupedTickets])
+
+  useEffect(() => {
+    const _groupedTickets = { ...groupedTickets };
+    const priorities = [0, 1, 2, 3, 4];
+    const priorityTitles = ['No priority', 'Low', 'Medium', 'High', 'Urgent'];
     const statuses = ['Backlog', 'In progress', 'Todo', 'Done', 'Canceled'];
 
     if (groupBy === 'priority') {
       priorities.forEach(priority => {
+        _groupedTickets[priorityTitles[priority]] = _groupedTickets[priority] || [];
         _groupedTickets[priority] = _groupedTickets[priority] || [];
+        delete _groupedTickets[priority];
       });
     } else if (groupBy === 'status') {
       statuses.forEach(status => {
         _groupedTickets[status] = _groupedTickets[status] || [];
       });
     }
+    else if (groupBy === 'userId') {
+      users.forEach(user => {
+        _groupedTickets[user.name] = _groupedTickets[user.id] || [];
+        delete _groupedTickets[user.id];
+      })
+    }
     setAllGroupedTickets(_groupedTickets);
-  }, [ groupedTickets ]);
-  
+  }, [groupedTickets]);
+
   useEffect(() => {
     const groupTickets = (tickets) => {
       return tickets.reduce((acc, ticket) => {
@@ -55,16 +76,25 @@ export default function Board({  groupBy = "status", sortBy = "priority" , ticke
   }, [groupBy, sortBy, tickets]);
 
   return (
-        <div className="board">  
-        {Object.keys(allGroupedTickets).map((key) => (
-          <div className="column" key={key}>
-            <div className="column-title">{key}</div>
-            <div className="column-items">
-              {allGroupedTickets[key].map((item, index) => (
-                <KanbanCard key={index} {...item} />
-              ))}
-            </div>
+    <div className="board">
+      {Object.keys(allGroupedTickets).map((key) => (
+        <div className="column" key={key}>
+          <div className="column-title">
+            <div className="gap">
+              <span>{key}</span> 
+              <span>{allGroupedTickets[key].length}</span>
+            </div> 
+              <div className="gap" >
+                <img className="col-icon" src={Addicon} width={20} /> 
+                <img className="col-icon" src={OptionIcon} width={20} />
+              </div>
+             </div>
+          <div className="column-items">
+            {allGroupedTickets[key].map((item, index) => (
+              <KanbanCard key={index} {...item} user={users.filter(user => user.id === item.userId)?.[0]} />
+            ))}
           </div>
-        ))}
-        </div>);
+        </div>
+      ))}
+    </div>);
 }
