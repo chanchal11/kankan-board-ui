@@ -40,3 +40,9 @@
   padding: 10px;
   flex-grow: 1;
 }
+
+.avatar-and-name {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}

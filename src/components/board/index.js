@@ -3,6 +3,7 @@ import KanbanCard from "../card";
 import './styles.css';
 import Addicon from '../../images/add.png';
 import OptionIcon from '../../images/option.png';
+import Avatar from "../avatar";
 
 export default function Board({ groupBy = "status", sortBy = "priority", tickets, users }) {
   const [groupedTickets, setGroupedTickets] = useState({});
@@ -81,7 +82,9 @@ export default function Board({ groupBy = "status", sortBy = "priority", tickets
         <div className="column" key={key}>
           <div className="column-title">
             <div className="gap">
-              <span>{key}</span> 
+              <div className="avatar-and-name" >
+              {groupBy === 'userId' &&  <Avatar name={key} width={'20px'} />} <span>{key}</span>
+              </div> 
               <span>{allGroupedTickets[key].length}</span>
             </div> 
               <div className="gap" >
