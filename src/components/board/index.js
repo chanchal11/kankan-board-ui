@@ -5,6 +5,29 @@ import Addicon from '../../images/add.png';
 import OptionIcon from '../../images/option.png';
 import Avatar from "../avatar";
 
+function ColumnHeading({groupBy, id, users }){
+  switch(groupBy){
+    case 'status':
+      return (
+        <div className="avatar-and-name" >
+              <span>{id}</span>
+          </div>
+      )
+    case 'userId':
+      return (
+        <div className="avatar-and-name" >
+             <Avatar name={id} width={'20px'} available={users?.filter(user => user.name === id)?.[0]?.available} /> <span>{id}</span>
+          </div>
+      )
+    case 'priority':
+      return (
+        <div className="avatar-and-name" >
+            <span>{id}</span>
+        </div>
+      )
+  }
+}
+
 export default function Board({ groupBy = "status", sortBy = "priority", tickets, users }) {
   const [groupedTickets, setGroupedTickets] = useState({});
   const [allGroupedTickets, setAllGroupedTickets] = useState({});
@@ -24,7 +47,7 @@ export default function Board({ groupBy = "status", sortBy = "priority", tickets
 
   useEffect(() => {
     const _groupedTickets = { ...groupedTickets };
-    const priorities = [0, 1, 2, 3, 4];
+    const priorities = [0, 4, 1, 2, 3];
     const priorityTitles = ['No priority', 'Low', 'Medium', 'High', 'Urgent'];
     const statuses = ['Backlog', 'In progress', 'Todo', 'Done', 'Canceled'];
 
@@ -82,9 +105,7 @@ export default function Board({ groupBy = "status", sortBy = "priority", tickets
         <div className="column" key={key}>
           <div className="column-title">
             <div className="gap">
-              <div className="avatar-and-name" >
-              {groupBy === 'userId' &&  <Avatar name={key} width={'20px'} available={users?.filter(user => user.name === key)?.[0]?.available} />} <span>{key}</span>
-              </div> 
+              <ColumnHeading groupBy={groupBy} id={key} users={users} /> 
               <span className="ticket-count" >{allGroupedTickets[key].length}</span>
             </div> 
               <div className="gap" >
