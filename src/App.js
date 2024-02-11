@@ -8,8 +8,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
-  const [groupingOption, setGroupingOption] = useState('status');
-  const [sortingOption, setSortingOption] = useState('priority');
+  const [groupingOption, setGroupingOption] = useState(localStorage.getItem('groupingOption') || 'status');
+  const [sortingOption, setSortingOption] = useState(localStorage.getItem('sortingOption') || 'priority');
 
   const fetchData = useCallback(async () => {
     try {
@@ -27,10 +27,12 @@ const App = () => {
 
   const handleGroupingOptionChange = (option) => {
     setGroupingOption(option);
+    localStorage.setItem('groupingOption', option);
   };
 
   const handleSortingOptionChange = (option) => {
     setSortingOption(option);
+    localStorage.setItem('sortingOption', option);
   };
 
   useEffect(() => {
