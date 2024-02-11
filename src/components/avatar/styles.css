@@ -1,8 +1,5 @@
 .avator-available {
-    position: absolute;
-    top: 0;
-    right: 5px;
-    z-index: 99;
+    position: relative;
+    bottom: -2px;
+    right: 9px;
 }
-
-
