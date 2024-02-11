@@ -85,7 +85,7 @@ export default function Board({ groupBy = "status", sortBy = "priority", tickets
               <div className="avatar-and-name" >
               {groupBy === 'userId' &&  <Avatar name={key} width={'20px'} available={users?.filter(user => user.name === key)?.[0]?.available} />} <span>{key}</span>
               </div> 
-              <span>{allGroupedTickets[key].length}</span>
+              <span className="ticket-count" >{allGroupedTickets[key].length}</span>
             </div> 
               <div className="gap" >
                 <img className="col-icon" src={Addicon} width={20} /> 
