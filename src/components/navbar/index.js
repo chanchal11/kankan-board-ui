@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './styles.css';
 import KanbanIcon from '../../images/kanban.png';
 import ArrowDownIcon from '../../images/down-arrow.png';
+import ArrowUpIcon from '../../images/up-arrow.png';
+
 
 export default function Navbar({ groupingOption, sortingOption, handleGroupingOptionChange, handleSortingOptionChange }) {
     const [showOptions, setShowOptions] = useState(false);
@@ -10,7 +12,7 @@ export default function Navbar({ groupingOption, sortingOption, handleGroupingOp
         <div className="display-btn" onClick={() => setShowOptions( (show) => !show)}  >
             <img src={KanbanIcon} width={20} />
             <span>Display</span>
-            <img src={ArrowDownIcon} width={20} className='arrow-down' />
+            <img src={showOptions ? ArrowUpIcon : ArrowDownIcon} width={20} className='arrow-down' />
         </div>
         <div className={`options${showOptions ? '' : ' hide' }`}>
           <div className='option' >
