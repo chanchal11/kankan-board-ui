@@ -24,7 +24,7 @@
 .kanban-card-footer {
     display: flex;
     justify-content: flex-start;
-    gap: 20px;
+    gap: 10px;
     margin-top: 10px;
     justify-self: flex-end;
     align-items: center;
@@ -35,8 +35,26 @@
     padding: 2px 5px;
     margin: 5px 5px 5px 0;
     border-radius: 3px;
-    background-color: #e0e0e0;
+    color: gray;
     font-size: 0.8em;
+}
+
+.kanban-card-tag-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    height: 20px;
+}
+.kanban-card-option {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 20px;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
