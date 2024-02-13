@@ -9,10 +9,6 @@
   min-height: 92vh;
 }
 
-.board::-webkit-scrollbar {
-  display: none;
-}
-
 .column {
   width: 300px;
   min-width: 300px;
